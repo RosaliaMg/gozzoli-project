@@ -2,7 +2,7 @@
 layout: default
 ---
 
-Text can be **Benozzo Gozzoli**, _italic_, or ~~strikethrough~~.
+The chosen topic is the Italian Renaissance painter **Benozzo Gozzoli**.
 
 [Link to another page](./another-page.html).
 
