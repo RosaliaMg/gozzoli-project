@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-QUESTO È DEL TEMA DI GITHUB, DA MODIFICARE, PER ORA NON CI INTERESSA, NON SO SE TENERE L'MD O FARE SOLO HTML
+QUESTO È DEL TEMA DI GITHUB, DA MODIFICARE, PER ORA NON CI INTERESSA, NON SO SE TENERE L'MD O FARE SOLO HTML, però lo userei come esempio di impostazione per le altre pagine.
 The chosen topic is the Italian Renaissance painter **Benozzo Gozzoli**.
 
 [Link to another page](./another-page.html).
