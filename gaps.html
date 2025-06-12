@@ -42,11 +42,11 @@
   <div class="w3-row">
     <div class="w3-col m12">
       <div class="w3-card w3-white w3-round w3-margin-bottom w3-padding">
-        <h1>Gaps</h1>
-        <h2>How the gaps were identified</h2>
-        <p>We started asking ChatGPT to find cultural properties related to Benozzo Gozzoli. Here is the question we made and the answer of the LLM:</p>
-        <p><i>Can you make a SPARQL query on ArCo which can ask the following question: what are the cultural properties of the author Benozzo Gozzoli?</i></p>
-        <p>ChatGPT's answer:</p>
+        <h1>How the gaps were identified</h1>
+        <h2>First gap</h2>
+        <p>We started asking ChatGPT to find cultural properties related to Benozzo Gozzoli. Here is the question we made and the answer of the LLM:<br>
+        <i>Can you make a SPARQL query on ArCo which can ask the following question: what are the cultural properties of the author Benozzo Gozzoli?</i><br>
+        ChatGPT's answer:</p>
         <blockquote>
           <p>We need to find cultural properties (typically instances of arco-core:CulturalProperty) that are linked to the author Benozzo Gozzoli as their creator.
 Here's a SPARQL query that does that:
@@ -71,9 +71,10 @@ WHERE {
 
         </p>
         </blockquote>
-        <p>We tried this query on the SPARQL endpoint of ArCo <a href="https://dati.cultura.gov.it/sparql"> (OpenLink Virtuoso SPARQL Query Editor) </a>, it worked but it didn't give any result. Therefore we said to the LLM:</p>
-         <p><i>There are no results for this query on ArCo.</i></p>
-        <p>ChatGPT's answer:</p>
+        <p>We tried this query on the SPARQL endpoint of ArCo <a href="https://dati.cultura.gov.it/sparql"> (OpenLink Virtuoso SPARQL Query Editor) </a>, it worked but it didn't give any result.<br>
+          Therefore we said to the LLM:<br>
+         <i>There are no results for this query on ArCo.</i><br>
+          ChatGPT's answer:</p>
         <blockquote>
           <p>Thanks for checking - you're right, <strong>the query returns no results</strong> as written, likely because of one or more of the following issues: <br>
             1. <strong>Benozzo Gozzoli may not be labeled exactly as "Benozzo Gozzoli"@it</strong> in the ArCo dataset.<br>
@@ -83,11 +84,18 @@ WHERE {
            <p>Let me refine the approach by <strong>searching for the actual URI</strong> of Benozzo gozzoli and adjusting the structure accordingly.</p> 
         <h1>Header 1</h1>
         <p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration.</p>
+....
 
-        <h2>Header 2</h2>
-        <blockquote>
-            <p>This is a blockquote following a header.<br>
-             When something is important enough, you do it even if the odds are not in your favor.</p>
+
+          
+        <h2>Second gap</h2>
+          <p>At this point we thought it would be useful to search for information gaps about Benozzo Gozzoli on DBpedia.<br>
+            We asked ChatGPT the following questions:<br>
+            <i>How do I find gaps of information about Benozzo Gozzoli and his works on DBpedia?</i><br>
+            ChatGPT's answer:</p>
+            <blockquote>
+            <p>Great question — identifying <strong>gaps of information on DBpedia</strong> about <strong>Benozzo Gozzoli</strong> and his works requires comparing
+            what's <i>expected</i> (e.g., typical properties for artists and their works) with what's <i>actually present</i> in the data.</p>
         </blockquote>
 
 <h3>Header 3</h3>
