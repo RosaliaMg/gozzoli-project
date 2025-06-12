@@ -71,7 +71,16 @@ WHERE {
 
         </p>
         </blockquote>
-        <p><a href="./another-page.html">Link to another page, maybe use this when reconnecting to links of Knowledge Graphs</a></p>
+        <p>We tried this query on the SPARQL endpoint of ArCo <a href="https://dati.cultura.gov.it/sparql"> (OpenLink Virtuoso SPARQL Query Editor) </a>, it worked but it didn't give any result. Therefore we said to the LLM:</p>
+         <p><i>There are no results for this query on ArCo.</i></p>
+        <p>ChatGPT's answer:</p>
+        <blockquote>
+          <p>Thanks for checking - you're right, <strong>the query returns no results</strong> as written, likely because of one or more of the following issues:
+            1. <strong>Benozzo Gozzoli may not be labeled exactly as "Benozzo Gozzoli"@it</strong> in the ArCo dataset.
+            2. <strong>The author might be represented as a URI, not a literal label.</strong>
+            3. <strong>The role or relationship pattern could differ</strong>, i.e.,</p> 
+          <p style="color:green;">arco-core:hasAgentRole</> might not be the correct property path.</p>
+           <p>Let me refine the approach by <strong>searching for the actual URI</strong> of Benozzo gozzoli and adjusting the structure accordingly.</p> 
         <h1>Header 1</h1>
         <p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration.</p>
 
