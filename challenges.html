@@ -264,8 +264,24 @@ This is the most likely reason:
 - On Laptop A, your browser might be set to prefer <b>English only</b>.
 - On Laptop B, your browser might be set to prefer <b>Dutch (nl)</b> or includes Dutch as a fallback.
 - So DBpedia shows you different RDF-extracted versions accordingly.</p>
-
-   </blockquote></p>
+<h4>Step 4: Differences in Cached Data</h4>
+     <p>- One browser may have <b>cached an older version</b> of the page, or DBpedia might have returned slightly different content because of minor time-based updates.
+<h4>Step 5: Extensions or Network Settings</h4>
+       <p>- Some browser extensions or privacy settings can manipulate headers (including Accept-Language), spoofing your region or preferences.
+         - VPNs or proxies can also affect perceived location or language.
+         <h4>How to confirm this?</h4>
+         <p>You can check your browser's current language preference like this:
+           <b>In Chrome:</b>
+           1. Go to chrome://settings/languages
+           2. See which languages are listed and their priority.
+           <b>In Firefox:</b>
+           1. Go to about:preferences#general
+           2. Scroll to “Language” section.<br>
+           Try setting both laptops to the <b>same language preferences</b>, clear cache, and then reload the page — you'll likely see the same content.
+           <h4>Summary:</h4>
+           <p>You’re seeing different versions of the page because <b>DBpedia dynamically adapts to the browser's language preferences (Accept-Language header)</b>. One laptop likely signals a preference for Dutch, while the other doesn’t — leading to different RDF views of the same entity.
+Let me know if you’d like to test this out interactively or view the HTTP headers directly!
+ </blockquote></p>
       </div>
     </div>
   </div>
