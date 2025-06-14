@@ -238,7 +238,34 @@ LIMIT 100
    <p><a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a> by clicking on this link from different laptops, at the same moment, we realized that we were reading different information. 
 </p>
    <img src="DBpedia Gozzoli1.png" alt="Gozzoli DBpedia" width="120" height="100">
-   <img src="DBpedia Gozzoli2.png" alt="Gozzoli DBpedia" width="120" height="100">     
+   <img src="DBpedia Gozzoli2.png" alt="Gozzoli DBpedia" width="120" height="100">    
+   <p><blockquote>
+     <h3><b>Step-by-Step Reasoning:</b></h3>
+     <h4>Step 1: Understand What DBpedia is:</h4>
+     <p>- <b>DBpedia</b> is a project that extracts structured from Wikipedia and makes it available on the web.
+     - The page you're visiting is not static HTML like a typical webpage. It is <b>dynamically generated based on RDF data</b> (a semantic format).</p>
+     <h4>Step 2: Understand what Varies Between Laptops</h4>
+    <p>Even if you0re visiting the same URL, the following <b>client-side variables</b> can affect what you see:
+     - <b>Browser language settings
+     - Cookies or cache
+     - User-Agent string (different browsers/devices
+     - Geolocation (based on IP)
+     - Query parameters, even if hidden or appended by extensions</b></p>
+     <h4>Step 3: Language Preferences in HTTP Requests</h4>
+     <p>- When you visit a website, your browser sends an Accept-Language <b>HTTP reader</b> indicating your preferred languages.
+
+     Example:
+
+     Accept-Language: en-US,en;q=0.9,nl;q=0.8
+
+DBpedia uses this to adapt the content it shows.
+
+This is the most likely reason:
+- On Laptop A, your browser might be set to prefer <b>English only</b>.
+- On Laptop B, your browser might be set to prefer <b>Dutch (nl)</b> or includes Dutch as a fallback.
+- So DBpedia shows you different RDF-extracted versions accordingly.</p>
+
+   </blockquote></p>
       </div>
     </div>
   </div>
