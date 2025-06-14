@@ -82,7 +82,59 @@ WHERE {
             3. <strong>The role or relationship pattern could differ</strong>, i.e.,</p> <br>
           <p style="color:green;">arco-core:hasAgentRole<p/><p>might not be the correct property path.</p>
            <p>Let me refine the approach by <strong>searching for the actual URI</strong> of Benozzo gozzoli and adjusting the structure accordingly.</p> 
-       
+        <p><strong>Step-by-step fixed query:</strong><br>
+        <strong>First,</strong>try to find the URI for Benozzo Gozzoli in ArCo:<br>
+  ?culturalProperty a arco-core:CulturalProperty ;
+                    arco-core:hasAgentRole ?agentRole .
+
+  ?agentRole a arco-cd:Author ;
+             arco-core:hasAgent ?author .
+
+          PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?person
+WHERE {
+  ?person rdfs:label ?label .
+  FILTER (LANG(?label) = "it" && CONTAINS(LCASE(?label), "benozzo gozzoli"))
+}
+
+This query searches for any resource whose label includes "benozzo gozzoli" (case-insensitive, Italian).
+</blockquote></p>
+<p>This query finds results, but they are only resources related to the low case string “benozzo gozzoli”.
+  We needed to find results related to the label “benozzo gozzoli” regardless of the character, so we asked ChatGPT
+  to rewrite the query with the case insensitive symbol “i” instead of LCASE in the FILTER part. This is its answer:</p>
+<p><blockquote>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?person
+WHERE {
+  ?person rdfs:label ?label .
+  FILTER (LANG(?label) = "it" && REGEX(?label, "benozzo gozzoli", "i"))
+}
+</blockquote></p>   
+<p>We were able to find more results.
+</p>
+<img src="case insensitive results.png" alt="Case insensitive research results">
+<p>ChatGPT's answer continued like this:</p>
+        <blockquote><strong>If we get a URI like:</strong>
+<http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli>
+We would plug it into this query to find associated cultural properties:
+PREFIX arco-core: <https://w3id.org/arco/core/>
+PREFIX arco-cd: <https://w3id.org/arco/ontology/context-description/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?culturalProperty ?title ?type
+WHERE {
+  ?culturalProperty a arco-core:CulturalProperty ;
+                    arco-core:hasAgentRole ?agentRole .
+
+  ?agentRole a arco-cd:Author ;
+             arco-core:hasAgent <http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli> .
+
+  OPTIONAL { ?culturalProperty rdfs:label ?title . }
+  OPTIONAL { ?culturalProperty a ?type . }
+               
+ </blockquote>
         <h2>Second gap</h2>
           <p>At this point we thought it would be useful to search for information gaps about Benozzo Gozzoli on DBpedia.<br>
             We asked ChatGPT the following questions:<br>
