@@ -157,105 +157,67 @@ ORDER BY ?inception</code></pre>
 You can execute this query on the <a href="https://query.wikidata.org"/>Wikidata Query Service.</a>
 If you need assistance in adapting this query for other datasets or require further information, feel free to ask.
 </blockquote>
-<p>ChatGPT suggested using Wikidata, another knowledge graph, but it is not part of our project therefore we avoided it. Overall, the request to ChatGPT to find the URI of Benozzo Gozzoli led to no results, so we decided to search for the URI in a different way, which will be addressed in the “Challenges” page. 
+<p>ChatGPT suggested using Wikidata, another knowledge graph, but it is not part of our project therefore we avoided it. <mark>Overall, the request to ChatGPT to find the URI of Benozzo Gozzoli led to no results</mark>, so we decided to search for the URI in a different way, which will be addressed in the “Challenges” page. 
 We still thought that it was a good idea to insert this answer by ChatGPT because it shows how this LLM reasons.</p>
-        <h2>Second gap</h2>
-          <p>At this point we thought it would be useful to search for information gaps about Benozzo Gozzoli on DBpedia.<br>
-            We asked ChatGPT the following questions:<br>
-            <i>How do I find gaps of information about Benozzo Gozzoli and his works on DBpedia?</i><br>
-            ChatGPT's answer:</p>
-            <blockquote>
-            <p>Great question — identifying <strong>gaps of information on DBpedia</strong> about <strong>Benozzo Gozzoli</strong> and his works requires comparing
-            what's <i>expected</i> (e.g., typical properties for artists and their works) with what's <i>actually present</i> in the data.</p>
-        </blockquote>
 
-<h3>Header 3</h3>
-<pre><code class="language-js">// Javascript code
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-} "this could be the way in which we write the code for the queries"
-</code></pre>
+<h2>Second gap</h2>
+  <p>During our research we checked Michelangelo’s DBpedia page and we noticed that while he has a dbo:author property that connects him to some of his works, on Benozzo Gozzoli’s page there is no dbo:author property connecting his <mark>artworks</mark>.
+This is a triple that can potentially create a dbo:author property for Benozzo Gozzoli. We checked it on an RDF validator.
+</p>
+               <pre><code class="language-xml">
+                 <?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dbo="http://dbpedia.org/ontology/"
+    xmlns:dbr="http://dbpedia.org/resource/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 
-<pre><code class="language-ruby"># Ruby code
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-</code></pre>
+  <!-- Benozzo Gozzoli resource with dbo:authorOf property -->
+  <rdf:Description rdf:about="https://dbpedia.org/page/Benozzo_Gozzoli">
+    <rdfs:label xml:lang="en">Benozzo Gozzoli</rdfs:label>
+    <dbo:authorOf rdf:resource="link to the new page"/>
+  </rdf:Description>
 
-<h4>Header 4</h4>
-<ul>
-  <li>This is an unordered list</li>
-  <li>This is an unordered list</li>
-  <li>This is an unordered list</li>
-</ul>
+</rdf:RDF>
+               </code></pre>
+<h2>Third Gap</h2>
+               <p>At this point we chose some artworks by Benozzo Gozzoli and asked ChatGPT if they were available on DBpedia.
+This was our first question, using a <mark>few shot prompting</mark>:
+              <i>Can you see on the SPARQL endpoint of DBpedia (https://dbpedia.org/sparql) if these artworks by Benozzo Gozzoli are 
+                present on DBpedia? Also see if their name is in the English translation. Do not consider Wikidata in your answer. These are the Italian titles of the artworks:
+- L’adorazione dei Magi (Adoration of the Magi)
+- Cristo in pietà tra la Vergine e San Giovanni (Christ the Man of Sorrows between the Virgin Mary and St. John the Evangelist) 
+- Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of sodom) 
+- L’ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah) While you answer this question, follow this pattern: 
+Title of the artwork: Purification of the Virgin
+Present on DBpedia: Yes
+Image present under property foaf:depiction: No
+</i>
+               ChatGPT's answer:
+               <blockquote>Here are the results of the SPARQL check on DBpedia for each of the listed artworks by Benozzo Gozzoli 
+                 (checking for English‑labelled entries only, excluding Wikidata):
+                 <strong>L'adorazione dei Magi (Adoration of the Magi)
+                 Present on DBpedia:</strong>Yes — the broader subject Adoration of the Magi is present and linked within Benozzo Gozzoli’s page <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">en.wikipedia.org+6dbpedia.org+6it.wikipedia.org+6</a>.
+                 <strong>Image present under property "foaf:depiction"</strong>: No — there is no specific depiction tied to a DBpedia resource for Gozzoli's Adoration of the Magi, only general depictions associated with the artist himself. 
+</blockquote>
+               <p>The specific artwork is actually not available on DBpedia, there is only the page for the “Procession of the Magi” and also the biblical theme of the Adoration of the Magi. So we can enrich DBpedia also with this artwork. </p>
+               <blockquote><strong>Cristo in pietà tra la Vergine e San Giovanni (Christ the Man of Sorrows between the Virgin Mary and St. John the Evangelist)
+               Present on DBpedia:</strong>No — a SPARQL search and page browse did not produce any specific DBpedia resource or English‑labelled entry for this title under Gozzoli.
+               <strong>Image present under property "foaf:depiction"</strong>: N/A (since the artwork itself isn0t present).
+               <br>
+               <strong>Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of Sodom)
+               Present on DBpedia:</strong>No — no DBpedia entry or mention for this work by Gozzoli was found.
+               <strong>Image present under property "foaf:depiction"</strong>: N/A.
+               <br>
+               <strong>L’ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah)
+ Present on DBpedia:</strong>No — likewise, no matching DBpedia resource or English‑labelled title exists for this painting.
+               <strong> Image present under property "foaf:depiction":</strong> N/A.</blockquote>
+               <p>We also checked manually if these artworks are actually missing on DBpedia. We used these four artworks to create RDF triples which can be used to enrich DBpedia.
 
-<h5>Header 5</h5>
-<ol>
-  <li>This is an ordered list</li>
-  <li>This is an ordered list</li>
-  <li>This is an ordered list</li>
-</ol>
-
-<h6>Header 6</h6>
-<table>
-  <tr><th>head1</th><th>head two</th><th>three</th></tr>
-  <tr><td>ok</td><td>good swedish fish</td><td>nice</td></tr>
-  <tr><td>out of stock</td><td>good and plenty</td><td>nice</td></tr>
-  <tr><td>ok</td><td>good <code>oreos</code></td><td>hmm</td></tr>
-  <tr><td>ok</td><td>good <code>zoute</code> drop</td><td>yumm</td></tr>
-</table>
-
-<hr>
-
-<h3>Unordered list</h3>
-<ul>
-  <li>Item foo</li>
-  <li>Item bar</li>
-  <li>Item baz</li>
-  <li>Item zip</li>
-</ul>
-
-<h3>Ordered list</h3>
-<ol>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
-  <li>Item four</li>
-</ol>
-
-<h3>Nested list</h3>
-<ul>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item
-        <ul>
-          <li>level 3 item</li>
-          <li>level 3 item</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3>Images</h3>
-<p><strong>Small:</strong><br>
-<img src="https://github.githubassets.com/images/icons/emoji/octocat.png" alt="Octocat"></p>
-
-<p><strong>Large:</strong><br>
-<img src="https://guides.github.com/activities/hello-world/branching.png" alt="Branching" width="400"></p>
-
-<h3>Definition list</h3>
-<dl>
-  <dt>Name</dt><dd>Godzilla</dd>
-  <dt>Born</dt><dd>1952</dd>
-  <dt>Birthplace</dt><dd>Japan</dd>
-  <dt>Color</dt><dd>Green</dd>
-</dl>
-
-<pre><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.</code></pre>
-
-<pre><code>The final element.</code></pre>
+On Benozzo Gozzoli’s DBpedia page there are some resources whose name seem to refer to the artist’s artworks, but they are actually cultural/biblical themes, they are not connected Gozzoli with the property dbo:Author.
+</p>
+<h2>Fourth Gap</h2>
+<p>Later during the project, we found another gap on DBpedia compared to ArCo, which was <strong>missing information in the italian biography of Benozzo Gozzoli on DBpedia.</strong> Indeed, the Dutch version of his biography presented much more information than the Italian one, consisting of a brief description. Since he is an italian artist, we thought it would be ideal to enrich his biography in the italian language. The methodology to do so will be further explained in the “Challenges” section since in doing so, we faced a peculiar problem.</p>
       </div>
     </div>
   </div>
