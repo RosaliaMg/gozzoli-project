@@ -43,107 +43,202 @@
   <div class="w3-row">
     <div class="w3-col m12">
       <div class="w3-card w3-white w3-round w3-margin-bottom w3-padding">
-        <h2>Challenges</h2>
-        <p>Here you will find all the interactions we had with Large Language Models like ChatGPT and Gemini as a helpful tool in our research
-        for the enrichment of Benozzo Gozzoli's Knowledge Graphs on DBpedia and ArCo.</p>
-        <p>The chosen topic is the Italian Renaissance painter <strong>Benozzo Gozzoli</strong>.</p>
-        <p><a href="./another-page.html">Link to another page, maybe use this when reconnecting to links of Knowledge Graphs</a></p>
-        <h1>Header 1</h1>
-        <p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration.</p>
+        <h1>Challenges</h1>
+        <h2>FIRST CHALLENGE: ChatGPT and Gemini were not able to find the URI of Benozzo Gozzoli on ArCo</h2>
+        <p><u>How was this discovered?</u>
+        We asked ChatGPT to create a SPARQL query to find Benozzo Gozzoli’s URI, which we needed to find the cultural properties associated with him on ArCo. This investigation led to no results since, according to ChatGPT, there is no URI for Benozzo Gozzoli on the ArCo knowledge graph. 
+Nonetheless, there are works created by Benozzo Gozzoli, along with labels and locations on the ArCo dataset, which however are not linked to Gozzoli as author.
+<u>How was this solved?</u>
+        We asked ChatGpt if it was possible to find cultural properties of Benozzo Gozzoli without using the URI.
+<i>How can we find cultural properties which are not directly linked to a URI of Benozzo Gozzoli?</i>
+        <blockquote>You can try to search for works by Benozzo Gozzoli even if they are not linked directly to the Benozzo Gozzoli entity via properties such as arc:author or similar. There are several ways to do this, and I will explain some strategies:
+        <h3><b>1. Search for works that have his name as the label or description</b></h3>
+        You can search for resources that contain “Benozzo Gozzoli” in their labels or descriptions even if they are not formally linked through authorship. For example:
+        <pre><code class="language-sparql"> 
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-        <h2>Header 2</h2>
-        <blockquote>
-            <p>This is a blockquote following a header.<br>
-             When something is important enough, you do it even if the odds are not in your favor.</p>
-        </blockquote>
+SELECT DISTINCT ?opera ?label
+WHERE {
+  ?opera rdfs:label ?label .
+  FILTER(CONTAINS(LCASE(STR(?label)), "benozzo gozzoli"))
+}
+LIMIT 100
+</pre>
+      <h3><b>2. Search using free text properties, such as descriptions or notes</b></h3>
+          If the dataset has properties such as dc:description or other free text properties, you can search there as well. 
+        <h3><b>3. Search by subject or topic</b></h3>
+        If the works are labeled with subjects, topics, or classifications realted to Benozzo Gozzoli (e.g., "freschi di Benozzo Gozzoli", or "Magi Chapel"), you can search for works with those subjects.
+        <h3><b>4. Search with wider queries using UNION or OPTIONAL</b></h3>
+        You can merge multiple filler conditions to search the name in multiple properties:
+        <pre><code class="language-sparql">
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
 
-<h3>Header 3</h3>
-<pre><code class="language-js">// Javascript code
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-} "this could be the way in which we write the code for the queries"
-</code></pre>
+SELECT DISTINCT ?opera ?label ?desc
+WHERE {
+  ?opera a ?tipo .
+  OPTIONAL { ?opera rdfs:label ?label }
+  OPTIONAL { ?opera dc:description ?desc }
+  FILTER (
+    (BOUND(?label) && CONTAINS(LCASE(STR(?label)), "benozzo gozzoli")) ||
+    (BOUND(?desc) && CONTAINS(LCASE(STR(?desc)), "benozzo gozzoli"))
+  )
+}
+LIMIT 100
+</pre></blockquote></p>
+  <p><i>Can you rewrite this last query using union?</i></p>
+  <p><blockquote>Absolutely! Here's how you can <b>remake your query using UNION</b> instead of just OPTIONAL, to explicitly combine conditions that check <b>multiple properties</b> (like rdfs:label and dc:description) for mentions of <b>"benozzo gozzoli"</b>.
+  <h3><b>SPARQL Query Using UNION to Search Multiple Fields</b></h3>
+  <pre><code class="language-sparql">
+  SELECT DISTINCT ?opera ?label ?desc
+WHERE {
+  {
+    ?opera rdfs:label ?label .
+    FILTER (CONTAINS(LCASE(STR(?label)), "benozzo gozzoli"))
+  }
+  UNION
+  {
+    ?opera dc:description ?desc .
+    FILTER (CONTAINS(LCASE(STR(?desc)), "benozzo gozzoli"))
+  }
+}
+LIMIT 100
+</pre></blockquote></p>
+  <p>Thanks to this query, we were able to identify the cultural properties associated with Benozzo Gozzoli through their labels and descriptions. Among the various properties of the different URIs found, one appeared frequently: dc:creator
+<a href="https://w3id.org/arco/resource/Agent/aac28c7ad97085f1ed9c62729f1cd43d">https://w3id.org/arco/resource/Agent/aac28c7ad97085f1ed9c62729f1cd43d</a>, referring to <b>Benozzo di Lese, known as Benozzo Gozzoli – ca . 1421 / 1497</b>. This allowed us to ultimately find the URI for Benozzo Gozzoli, which — contrary to what was stated by ChatGPT and Gemini — does in fact exist in ArCo.
+</p>
+  <h2>SECOND CHALLENGE: Enrichment of DBpedia using ArCo</h2>
+  <p>We also created another SPARQL query on ArCo endpoint to see the artworks in alphabetical order.</p>
+  <pre><code class="language-sparql">
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
 
-<pre><code class="language-ruby"># Ruby code
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-</code></pre>
+SELECT DISTINCT ?opera ?label 
+WHERE {
+  ?opera  
+         dc:creator <https://w3id.org/arco/resource/Agent/aac28c7ad97085f1ed9c62729f1cd43d> ;
+         rdfs:label ?label .
+}
+ORDER BY LCASE(STR(?label))
+LIMIT 100
+  </code></pre>
+  <p>To solve the gap we identified, we created RDF triples for the artworks we selected in ArCo to potentially enrich DBpedia.</p>
+  <p><blockquote>
+    <b>- L'adorazione dei Magi(Adoration of the Magi)</b>
+    <pre>
+      <?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dbo="http://dbpedia.org/ontology/"
+    xmlns:dbp="http://dbpedia.org/property/"
+    xmlns:dbr="http://dbpedia.org/resource/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
 
-<h4>Header 4</h4>
-<ul>
-  <li>This is an unordered list</li>
-  <li>This is an unordered list</li>
-  <li>This is an unordered list</li>
-</ul>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Adorazione_dei_Magi_(Gozzoli)">
+    <dbo:abstract xml:lang="it">Questo impegnativo volume riproduce gli affreschi del Camposanto di Pisa, mediante le incisioni di Carlo Lasinio. E' un'importante fonte documentaria poichè testimonia di parti figurate che oggi sono illeggibili oppure non più visibili. La tavola, di ampio formato è costituita da due fogli interi. Accuratissimo il chiaroscuro, con i neri molto evidenti che permettono di ritenere questa copia una delle prima tirature </dbo:abstract>
+ <dbo:abstract xml:lang="en">This challenging volume replicates the frescoes of the Pisa Cemetery through the engravings of Carlo Lasinio. It is an important source of documentation as it witnesses figurative parts that are either illegible or no longer visible today. The large-format panel consists of two full sheets. Very meticulous chiaroscuro, with very evident blacks that allow this copy to be considered one of the first circulations.</dbo:abstract>
+    <dbp:type rdf:resource="http://dbpedia.org/ontology/Artwork"/>
+    <rdfs:label xml:lang="it">Adorazione dei Magi</rdfs:label>
+    <rdfs:label xml:lang="en">Adoration of the Magi</rdfs:label>
+    <foaf:depiction rdf:resource="http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007128/ICCD8526252_SBAAAS_PI_160063.jpg"/>
+    <dbo:author rdf:resource="http://dbpedia.org/resource/Benozzo_Gozzoli"/>
+    <dbo:location rdf:resource="http://dbpedia.org/resource/Piazza_dei_Miracoli"/>
+    <dbp:year xml:lang="en"> (?) 1812-(?) 1812  </dbp:year>
+    <dbo:medium xml:lang="en">Fresco</dbo:medium>
+  </rdf:Description>
 
-<h5>Header 5</h5>
-<ol>
-  <li>This is an ordered list</li>
-  <li>This is an ordered list</li>
-  <li>This is an ordered list</li>
-</ol>
+</rdf:RDF>
+</pre>
+      <b>- Cristo in pietà tra la Vergine e San giovanni (Christ the Man of sorrows between the Virgin Mary and St. John the Evangelist)</b>
+      <pre>
+        <?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dbo="http://dbpedia.org/ontology/"
+    xmlns:dbp="http://dbpedia.org/property/"
+    xmlns:dbr="http://dbpedia.org/resource/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
 
-<h6>Header 6</h6>
-<table>
-  <tr><th>head1</th><th>head two</th><th>three</th></tr>
-  <tr><td>ok</td><td>good swedish fish</td><td>nice</td></tr>
-  <tr><td>out of stock</td><td>good and plenty</td><td>nice</td></tr>
-  <tr><td>ok</td><td>good <code>oreos</code></td><td>hmm</td></tr>
-  <tr><td>ok</td><td>good <code>zoute</code> drop</td><td>yumm</td></tr>
-</table>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Cristo_in_pietà_tra_la_Vergine_e_San_Giovanni,_Cristo_in_pietà_tra_la_Madonna_e_San_Giovanni_Evangelista">
+    <dbo:abstract xml:lang="it">Si tratta del pannello di una predella di una pala d'altare non identificata. L'attribuzione a Benozzo Gozzoli risale al 1968 (Bollettino d'Arte 1968, p. 226) ed è stata concordemente accettata dalla critica. Recentemente Diane Cole Ahl (1997) ha avanzato l'ipotesi che le figure siano da riferire a Benozzo mentre il paesaggio potrebbe essere stato completato dalla bottega. Riguardo alla datazione Cole Ahl ipotizza che la tavoletta braidense sia avvicinabile a due dipinti pisani, la Pala di San Lazzaro fuori le mura (1469) e la Pala della Compagnia dei Fiorentini di Ottawa (1476/77) </dbo:abstract>
+ <dbo:abstract xml:lang="en">This is the panel of a predella of an unidentified altarpiece. The attribution to Benozzo Gozzoli dates from 1968 (Bollettino d'Arte 1968, p. 226) and has been unanimously accepted by critics. Recently Diane Cole Ahl (1997) has advanced the hypothesis that the figures are to be attributed to Benozzo while the landscape may have been completed by the studio. Regarding the dating Cole Ahl suggests that the Braidense tablet is comparable to two Pisan paintings, the Pala di San Lazzaro fuori le mura (1469) and the Pala della Compagnia dei Fiorentini in Ottawa (1476/77)</dbo:abstract>
+    <dbp:type rdf:resource="http://dbpedia.org/ontology/Artwork"/>
+    <rdfs:label xml:lang="it">Cristo in pietà tra la_Vergine e San_Giovanni, Cristo in pietà tra la Madonna e San Giovanni Evangelista</rdfs:label>
+    <rdfs:label xml:lang="en">Christ the Man of Sorrows between the Virgin Mary and St. John the Evangelist</rdfs:label>
+    <foaf:depiction rdf:resource="http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007116/ICCD3307088_L0212829.jpg"/>
+    <dbo:author rdf:resource="http://dbpedia.org/resource/Benozzo_Gozzoli"/>
+    <dbo:location rdf:resource="https://w3id.org/arco/resource/TimeIndexedTypedLocation/0300180313-current"/>
+    <dbp:year xml:lang="en"> ca 1469-ca 1477 </dbp:year>
+    <dbo:medium xml:lang="en">Fresco</dbo:medium>
+  </rdf:Description>
 
-<hr>
+</rdf:RDF>
+      </pre>
+      <b>- Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of sodom) Incendio_di Sodoma,_distruzione_di_Sodoma_e_Gomorra</b>
+      <pre>
+        <?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dbo="http://dbpedia.org/ontology/"
+    xmlns:dbp="http://dbpedia.org/property/"
+    xmlns:dbr="http://dbpedia.org/resource/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
 
-<h3>Unordered list</h3>
-<ul>
-  <li>Item foo</li>
-  <li>Item bar</li>
-  <li>Item baz</li>
-  <li>Item zip</li>
-</ul>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Incendio_di_Sodoma,_distruzione_di_Sodoma_e_Gomorra">
+    <dbo:abstract xml:lang="it">Questo impegnativo volume riproduce gli affreschi del Camposanto di Pisa, mediante le incisioni di Carlo Lasinio. E' un'importante fonte documentaria poichè testimonia di parti figurate che oggi sono illeggibili oppure non più visibili. La tavola, di ampio formato è costituita da due fogli interi. Accuratissimo il chiaroscuro, con i neri molto evidenti che permettono di ritenere questa copia una delle prima tirature </dbo:abstract>
+ <dbo:abstract xml:lang="en">This demanding volume reproduces the frescoes of the Camposanto di Pisa, using engravings by Carlo Lasinio. It is an important documentary source as it testifies to figurative parts that are now illegible or no longer visible. The large-format table consists of two whole sheets. Very accurate chiaroscuro, with very evident blacks that allow to consider this copy one of the first editions </dbo:abstract>
+    <dbp:type rdf:resource="http://dbpedia.org/ontology/Artwork"/>
+    <rdfs:label xml:lang="it">Incendio di Sodoma, distruzione di Sodoma e Gomorra</rdfs:label>
+    <rdfs:label xml:lang="en">The burning of sodom</rdfs:label>
+    <foaf:depiction rdf:resource="http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007116/ICCD8179104_S0212578.jpg"/>
+    <dbo:author rdf:resource="http://dbpedia.org/resource/Benozzo_Gozzoli"/>
+    <dbo:location rdf:resource="http://dbpedia.org/resource/Piazza_dei_Miracoli"/>
+    <dbp:year xml:lang="en"> ca 1822-ca 1822  </dbp:year>
+    <dbo:medium xml:lang="en">Fresco</dbo:medium>
+  </rdf:Description>
 
-<h3>Ordered list</h3>
-<ol>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
-  <li>Item four</li>
-</ol>
+</rdf:RDF>
+      </pre>
+      <b>- L'ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah)</b>
+      <pre>
+        <?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dbo="http://dbpedia.org/ontology/"
+    xmlns:dbp="http://dbpedia.org/property/"
+    xmlns:dbr="http://dbpedia.org/resource/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
 
-<h3>Nested list</h3>
-<ul>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item
-        <ul>
-          <li>level 3 item</li>
-          <li>level 3 item</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Incendio_di_Sodoma,_distruzione_di_Sodoma_e_Gomorra">
+    <dbo:abstract xml:lang="it">Questo impegnativo volume riproduce gli affreschi del Camposanto di Pisa, mediante le incisioni di Carlo Lasinio. E' un'importante fonte documentaria poichè testimonia di parti figurate che oggi sono illeggibili oppure non più visibili. La tavola, di ampio formato è costituita da due fogli interi. Accuratissimo il chiaroscuro, con i neri molto evidenti che permettono di ritenere questa copia una delle prima tirature </dbo:abstract>
+ <dbo:abstract xml:lang="en">This demanding volume reproduces the frescoes of the Camposanto di Pisa, using engravings by Carlo Lasinio. It is an important documentary source as it testifies to figurative parts that are now illegible or no longer visible. The large-format table consists of two whole sheets. Very accurate chiaroscuro, with very evident blacks that allow to consider this copy one of the first editions </dbo:abstract>
+    <dbp:type rdf:resource="http://dbpedia.org/ontology/Artwork"/>
+    <rdfs:label xml:lang="it">Incendio di Sodoma, distruzione di Sodoma e Gomorra</rdfs:label>
+    <rdfs:label xml:lang="en">The burning of sodom</rdfs:label>
+    <foaf:depiction rdf:resource="http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007116/ICCD8179104_S0212578.jpg"/>
+    <dbo:author rdf:resource="http://dbpedia.org/resource/Benozzo_Gozzoli"/>
+ <dbo:location rdf:resource="https://w3id.org/arco/resource/TimeIndexedTypedLocation/0300205486-current"/>
+    <dbp:year xml:lang="en"> ca 1822-ca 1822 </dbp:year>
+    <dbo:medium xml:lang="en">Fresco</dbo:medium>
+  </rdf:Description>
 
-<h3>Images</h3>
-<p><strong>Small:</strong><br>
-<img src="https://github.githubassets.com/images/icons/emoji/octocat.png" alt="Octocat"></p>
+</rdf:RDF>
+      </pre>      
+  </blockquote></p>
 
-<p><strong>Large:</strong><br>
-<img src="https://guides.github.com/activities/hello-world/branching.png" alt="Branching" width="400"></p>
-
-<h3>Definition list</h3>
-<dl>
-  <dt>Name</dt><dd>Godzilla</dd>
-  <dt>Born</dt><dd>1952</dd>
-  <dt>Birthplace</dt><dd>Japan</dd>
-  <dt>Color</dt><dd>Green</dd>
-</dl>
-
-<pre><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.</code></pre>
-
-<pre><code>The final element.</code></pre>
+   <h2>THIRD CHALLENGE</h2>
+   <p><a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a> by clicking on this link from different laptops, at the same moment, we realized that we were reading different information. 
+</p>
+   <img src="DBpedia Gozzoli1.png" alt="Gozzoli DBpedia" width="120" height="100">
+   <img src="DBpedia Gozzoli2.png" alt="Gozzoli DBpedia" width="120" height="100">     
       </div>
     </div>
   </div>
