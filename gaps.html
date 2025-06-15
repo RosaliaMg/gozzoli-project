@@ -90,7 +90,7 @@ WHERE {
   ?agentRole a arco-cd:Author ;
              arco-core:hasAgent ?author .</pre>
 <pre><code class="language-sparql">
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 SELECT ?person
 WHERE {
   ?person rdfs:label ?label .
@@ -104,7 +104,7 @@ This query searches for any resource whose label includes "benozzo gozzoli" (cas
   to rewrite the query with the case insensitive symbol “i” instead of LCASE in the FILTER part. This is its answer:</p>
 <p><blockquote>
   <pre><code class="language-sparql">
-  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT ?person
 WHERE {
@@ -117,11 +117,11 @@ WHERE {
 <img src="case insensitive results.png" alt="Case insensitive research results">
 <p>ChatGPT's answer continued like this:</p>
         <blockquote><strong>If we get a URI like:</strong>
-<pre><code class="language-sparql"><http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli>
+<pre><code class="language-sparql">&lt;http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli&gt;
 We would plug it into this query to find associated cultural properties:
-PREFIX arco-core: <https://w3id.org/arco/core/>
-PREFIX arco-cd: <https://w3id.org/arco/ontology/context-description/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco-core: &lt;https://w3id.org/arco/core/&gt;
+PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT DISTINCT ?culturalProperty ?title ?type
 WHERE {
@@ -129,7 +129,7 @@ WHERE {
                     arco-core:hasAgentRole ?agentRole .
 
   ?agentRole a arco-cd:Author ;
-             arco-core:hasAgent <http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli> .
+             arco-core:hasAgent &lt;http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli&gt; .
 
   OPTIONAL { ?culturalProperty rdfs:label ?title . }
   OPTIONAL { ?culturalProperty a ?type . }
@@ -140,9 +140,9 @@ WHERE {
 <blockquote>Thank you for your patience. Upon investigation, it appears that the ArCo dataset does not contain entries for Benozzo Gozzoli or his works. This absence likely explains why the previous SPARQL queries returned no results.
 However, Benozzo Gozzoli's artworks are well-documented in other cultural heritage datasets, such as Wikidata. For instance, his renowned fresco cycle in the Magi Chapel at Palazzo Medici Riccardi in Florence is cataloged there.
 To retrieve information about cultural properties associated with Benozzo Gozzoli from Wikidata, you can use the following SPARQL query:
-<pre><code>PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+<pre><code>PREFIX wd: &lt;http://www.wikidata.org/entity/&gt;
+PREFIX wdt: &lt;http://www.wikidata.org/prop/direct/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT DISTINCT ?work ?workLabel ?locationLabel ?inception
 WHERE {
@@ -164,29 +164,24 @@ We still thought that it was a good idea to insert this answer by ChatGPT becaus
   <a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a></i></h3>
 <p> Here’s a summary of the Benozzo Gozzoli page on DBpedia (via search result) with key details:</p>
 <h4>Benozzo Gozzoli (c. 1421 – October 4, 1497)</h4>
-               <p><b>- Birth name</b>: Benozzo di Lese
-
-
-- <b>Born</b>: around 1421 in Sant'Ilario a Colombano (near Scandicci), Republic of Florence <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">wga.hu+13dbpedia.org+13hu.dbpedia.org+13</a>
-
-- <b>Died</b>: October 4, 1497, in Pistoia, Republic of Florence <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">museothyssen.org+4dbpedia.org+4en.wikipedia.org+4</a>
-
-- <b>Nationality</b>: Florentine (Italian Renaissance painter) <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">artcyclopedia.com+4dbpedia.org+4en.wikipedia.org+4</a>
+<p><b>- Birth name</b>: Benozzo di Lese<br>
+- <b>Born</b>: around 1421 in Sant'Ilario a Colombano (near Scandicci), Republic of Florence <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">wga.hu+13dbpedia.org+13hu.dbpedia.org+13</a><br>
+- <b>Died</b>: October 4, 1497, in Pistoia, Republic of Florence <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">museothyssen.org+4dbpedia.org+4en.wikipedia.org+4</a><br>
+- <b>Nationality</b>: Florentine (Italian Renaissance painter) <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">artcyclopedia.com+4dbpedia.org+4en.wikipedia.org+4</a><br>
 
 <h4>Career & Artistic Contributions</h4>
 <p>
 - <b>Pupil and assistant</b> of Fra Angelico: cooperated with Lorenzo Ghiberti on the Doors of Paradise for Florence’s Baptistery around 1444–1447
-  <a href="https://en.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">artcyclopedia.com+8en.wikipedia.org+8dbpedia.org+8</a>
+  <a href="https://en.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">artcyclopedia.com+8en.wikipedia.org+8dbpedia.org+8</a><br>
 - Collaborated with Fra Angelico on Vatican frescoes (Niccoline Chapel) and on the vault in Orvieto Cathedral in 1447–1448
-  <a href="https://en.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">en.wikipedia.org+1pt.wikipedia.org+1</a>
-- His most celebrated work is the fresco cycle in the Magi Chapel of Palazzo Medici-Riccardi (Florence, circa 1459–1460), featuring lavish processions, rich portraiture (including Medici and his own self-portrait), landscapes, and an International Gothic influence <a href="https://en.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">museothyssen.org+6en.wikipedia.org+6dbpedia.org+6</a>
+  <a href="https://en.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">en.wikipedia.org+1pt.wikipedia.org+1</a><br>
+- His most celebrated work is the fresco cycle in the Magi Chapel of Palazzo Medici-Riccardi (Florence, circa 1459–1460), featuring lavish processions, rich portraiture (including Medici and his own self-portrait), landscapes, and an International Gothic influence <a href="https://en.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">museothyssen.org+6en.wikipedia.org+6dbpedia.org+6</a><br>
 - Also completed extensive frescoes:
-  - <b>Saint Augustine’s Life</b> cycles in Sant’Agostino, San Gimignano (1464–1467) <a href="https://it.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">artcyclopedia.com+7it.wikipedia.org+7en.wikipedia.org+7</a>
-  - <b>Old Testament cycle</b> in Camposanto Monumentale, Pisa (1469–1484; largely destroyed in WWII) <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">wga.hu+2dbpedia.org+2museothyssen.org+2</a></p>
+  - <b>Saint Augustine’s Life</b> cycles in Sant’Agostino, San Gimignano (1464–1467) <a href="https://it.wikipedia.org/wiki/Benozzo_Gozzoli?utm_source=chatgpt.com">artcyclopedia.com+7it.wikipedia.org+7en.wikipedia.org+7</a><br>
+  - <b>Old Testament cycle</b> in Camposanto Monumentale, Pisa (1469–1484; largely destroyed in WWII) <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">wga.hu+2dbpedia.org+2museothyssen.org+2</a></p><br>
   <h4>Style & Legacy</h4>
-<p>- Known as one of the most prolific fresco painters of his generation
-
-    - His style is marked by bright coloration, detailed storytelling, and blending of International Gothic elements with naturalistic Renaissance landscapes and portraiture <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">museothyssen.org+3dbpedia.org+3artsandculture.google.com+3</a>
+<p>- Known as one of the most prolific fresco painters of his generation<br>
+ - His style is marked by bright coloration, detailed storytelling, and blending of International Gothic elements with naturalistic Renaissance landscapes and portraiture <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">museothyssen.org+3dbpedia.org+3artsandculture.google.com+3</a><br>
 
 If you'd like to dive deeper into his biography, explore high‑resolution images of his frescoes, or learn about museums where his works are displayed, just let me know!
 
@@ -195,11 +190,11 @@ If you'd like to dive deeper into his biography, explore high‑resolution image
   <h4>Gemini answer:</h4>
   <p>
 I cannot directly "open" a web page in the way a web browser does. As a text-based AI, I don't have a graphical user interface or the ability to navigate the web interactively.
-However, I can confirm that the link you provided, https://dbpedia.org/page/Benozzo_Gozzoli, is the correct URL for the DBpedia page about Benozzo Gozzoli.
+However, I can confirm that the link you provided, <a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a>, is the correct URL for the DBpedia page about Benozzo Gozzoli.
 If you would like me to extract specific information from that page, or analyze its content, please let me know! You would need to provide me with the text content if you want me to process it, as I cannot browse the internet in real-time.
 During our research we checked Michelangelo’s DBpedia page and we noticed that while he has a dbo:author property that connects him to some of his works, on Benozzo Gozzoli’s page there is no dbo:author property connecting his artworks.
 This is a triple that can potentially create a dbo:author property for Benozzo Gozzoli. We checked it on an RDF validator.
-<pre>
+<pre><code class="language-xml">
 <?xml version="1.0"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -214,27 +209,8 @@ This is a triple that can potentially create a dbo:author property for Benozzo G
   </rdf:Description>
 
 </rdf:RDF>
-</pre>
-               
-  <p>During our research we checked Michelangelo’s DBpedia page and we noticed that while he has a dbo:author property that connects him to some of his works, on Benozzo Gozzoli’s page there is no dbo:author property connecting his <mark>artworks</mark>.
-This is a triple that can potentially create a dbo:author property for Benozzo Gozzoli. We checked it on an RDF validator.
-</p>
-               <pre><code class="language-sparql<">
-                 <?xml version="1.0"?>
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:dbo="http://dbpedia.org/ontology/"
-    xmlns:dbr="http://dbpedia.org/resource/"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-
-  <!-- Benozzo Gozzoli resource with dbo:authorOf property -->
-  <rdf:Description rdf:about="https://dbpedia.org/page/Benozzo_Gozzoli">
-    <rdfs:label xml:lang="en">Benozzo Gozzoli</rdfs:label>
-    <dbo:authorOf rdf:resource="link to the new page"/>
-  </rdf:Description>
-
-</rdf:RDF>
-               </code></pre>
+</code></pre>
+              
 <h2>Third Gap</h2>
                <p>At this point we chose some artworks by Benozzo Gozzoli and asked ChatGPT if they were available on DBpedia.
 This was our first question, using a <mark>few shot prompting</mark>:
