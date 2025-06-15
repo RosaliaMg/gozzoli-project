@@ -48,7 +48,7 @@
         <i>Can you make a SPARQL query on ArCo which can ask the following question: what are the cultural properties of the author Benozzo Gozzoli?</i><br>
         ChatGPT's answer:</p>
         <blockquote>
-          <p>We need to find cultural properties (typically instances of arco-core:CulturalProperty) that are linked to the author Benozzo Gozzoli as their creator.
+          <span style="font-size: 80%;"><p>We need to find cultural properties (typically instances of arco-core:CulturalProperty) that are linked to the author Benozzo Gozzoli as their creator.
 Here's a SPARQL query that does that:
 <pre><code class="language-sparql">PREFIX arco-core: &lt;https://w3id.org/arco/core/&gt;
 PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
@@ -67,7 +67,7 @@ WHERE {
   OPTIONAL { ?culturalProperty rdfs:label ?title . }
 
   OPTIONAL { ?culturalProperty a ?type . }
-}</code></pre>
+}</code></pre></span>
 
         </p>
         </blockquote>
@@ -76,7 +76,7 @@ WHERE {
          <i>There are no results for this query on ArCo.</i><br>
           ChatGPT's answer:</p>
         <blockquote>
-          <p>Thanks for checking - you're right, <strong>the query returns no results</strong> as written, likely because of one or more of the following issues: <br>
+          <span style="font-size: 80%;"><p>Thanks for checking - you're right, <strong>the query returns no results</strong> as written, likely because of one or more of the following issues: <br>
             1. <strong>Benozzo Gozzoli may not be labeled exactly as "Benozzo Gozzoli"@it</strong> in the ArCo dataset.<br>
             2. <strong>The author might be represented as a URI, not a literal label.</strong> <br>
             3. <strong>The role or relationship pattern could differ</strong>, i.e.,
@@ -98,12 +98,12 @@ WHERE {
 }
           </code></pre>
 This query searches for any resource whose label includes "benozzo gozzoli" (case-insensitive, Italian).
-</blockquote></p>
+</blockquote></p></span>
 <p>This query finds results, but they are only resources related to the low case string “benozzo gozzoli”.
   We needed to find results related to the label “benozzo gozzoli” regardless of the character, so we asked ChatGPT
   to rewrite the query with the case insensitive symbol “i” instead of LCASE in the FILTER part. This is its answer:</p>
 <p><blockquote>
-  <pre><code class="language-sparql">
+  <span style="font-size: 80%;"><pre><code class="language-sparql">
   PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT ?person
@@ -111,7 +111,7 @@ WHERE {
   ?person rdfs:label ?label .
   FILTER (LANG(?label) = "it" && REGEX(?label, "benozzo gozzoli", "i"))
 }</>code></pre>
-</blockquote></p>   
+</blockquote></p> </span>  
 <p>We were able to find more results.
 </p>
 <img src="case insensitive results.png" alt="Case insensitive research results">
@@ -200,12 +200,12 @@ This is a triple that can potentially create a dbo:author property for Benozzo G
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dbo="http://dbpedia.org/ontology/"
     xmlns:dbr="http://dbpedia.org/resource/"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;
 
   <!-- Benozzo Gozzoli resource with dbo:authorOf property -->
-  <rdf:Description rdf:about="https://dbpedia.org/page/Benozzo_Gozzoli">
-    <rdfs:label xml:lang="en">Benozzo Gozzoli</rdfs:label>
-    <dbo:authorOf rdf:resource="link to the new page"/>
+  &lt;rdf:Description rdf:about="https://dbpedia.org/page/Benozzo_Gozzoli"&gt;
+    &lt;rdfs:label xml:lang="en">Benozzo Gozzoli</rdfs:label&gt;
+    &lt;dbo:authorOf rdf:resource="link to the new page"/&gt;
   </rdf:Description>
 
 </rdf:RDF>
