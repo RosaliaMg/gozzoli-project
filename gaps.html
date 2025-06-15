@@ -50,9 +50,9 @@
         <blockquote>
           <p>We need to find cultural properties (typically instances of arco-core:CulturalProperty) that are linked to the author Benozzo Gozzoli as their creator.
 Here's a SPARQL query that does that:
-<pre><code class="language-sparql">PREFIX arco-core: <https://w3id.org/arco/core/>
-PREFIX arco-cd: <https://w3id.org/arco/ontology/context-description/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+<pre><code class="language-sparql">PREFIX arco-core: &lt;https://w3id.org/arco/core/&gt;
+PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT DISTINCT ?culturalProperty ?title ?type
 WHERE {
@@ -90,8 +90,7 @@ WHERE {
   ?agentRole a arco-cd:Author ;
              arco-core:hasAgent ?author .</pre>
 <pre><code class="language-sparql">
-          PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?person
 WHERE {
   ?person rdfs:label ?label .
