@@ -195,8 +195,8 @@ If you would like me to extract specific information from that page, or analyze 
 During our research we checked Michelangelo’s DBpedia page and we noticed that while he has a dbo:author property that connects him to some of his works, on Benozzo Gozzoli’s page there is no dbo:author property connecting his artworks.
 This is a triple that can potentially create a dbo:author property for Benozzo Gozzoli. We checked it on an RDF validator.
 <pre><code class="language-xml">
-<?xml version="1.0"?>
-<rdf:RDF
+&lt;?xml version="1.0"?&gt;
+&lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dbo="http://dbpedia.org/ontology/"
     xmlns:dbr="http://dbpedia.org/resource/"
@@ -206,9 +206,9 @@ This is a triple that can potentially create a dbo:author property for Benozzo G
   &lt;rdf:Description rdf:about="https://dbpedia.org/page/Benozzo_Gozzoli"&gt;
     &lt;rdfs:label xml:lang="en">Benozzo Gozzoli</rdfs:label&gt;
     &lt;dbo:authorOf rdf:resource="link to the new page"/&gt;
-  </rdf:Description>
+  &lt;/rdf:Description&gt;
 
-</rdf:RDF>
+&lt;/rdf:RDF&gt;
 </code></pre>
               
 <h2>Third Gap</h2>
