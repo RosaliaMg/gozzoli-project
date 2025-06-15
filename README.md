@@ -27,12 +27,12 @@ https://alicesgarlata.github.io/gozzoli-project/
 - DBpedia — https://dbpedia.org
 - ArCo — https://www.ontologydesignpatterns.org/wiki/Ontology:ArCo
 
-## 👩 Author
+## 👩 AuthorS
 
-Alice Sgarlata  
-Gaia Cardinale
-Giorgia Bresciani
-Rosalia Magnifico
+- Alice Sgarlata 
+- Gaia Cardinale
+- Giorgia Bresciani
+- Rosalia Magnifico
 ---
 
 © 2025 — Academic project created for educational purposes only.
