@@ -212,10 +212,12 @@ This is a triple that we created that can potentially add dbo:author property fo
 This was our first question, using a <mark>few shot prompting</mark>:
               <i>Can you see on the SPARQL endpoint of DBpedia (https://dbpedia.org/sparql) if these artworks by Benozzo Gozzoli are 
                 present on DBpedia? Also see if their name is in the English translation. Do not consider Wikidata in your answer. These are the Italian titles of the artworks:<br>
-- L’adorazione dei Magi (Adoration of the Magi)<br>
-- Cristo in pietà tra la Vergine e San Giovanni (Christ the Man of Sorrows between the Virgin Mary and St. John the Evangelist)<br>
-- Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of sodom)<br>
-- L’ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah)<br>
+<ul>
+<li>L’adorazione dei Magi (Adoration of the Magi)</li>
+<li>Cristo in pietà tra la Vergine e San Giovanni (Christ the Man of Sorrows between the Virgin Mary and St. John the Evangelist)</li>
+<li>Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of sodom)</li>
+<li>L’ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah)</li>
+</ul>
 While you answer this question, follow this pattern:<br>
 Title of the artwork: Purification of the Virgin<br>
 Present on DBpedia: Yes<br>
@@ -223,22 +225,23 @@ Image present under property foaf:depiction: No<br>
 </i>
                ChatGPT's answer:
               <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"><blockquote>Here are the results of the SPARQL check on DBpedia for each of the listed artworks by Benozzo Gozzoli (checking for English‑labelled entries only, excluding Wikidata):<br>
-                 <strong>L'adorazione dei Magi (Adoration of the Magi)<br>
+                 <ul>
+                   <li><strong>L'adorazione dei Magi (Adoration of the Magi)<br>
                  Present on DBpedia:</strong>Yes — the broader subject Adoration of the Magi is present and linked within Benozzo Gozzoli’s page <a href="https://dbpedia.org/page/Benozzo_Gozzoli?utm_source=chatgpt.com">en.wikipedia.org+6dbpedia.org+6it.wikipedia.org+6</a>.<br>
                  <strong>Image present under property "foaf:depiction"</strong>: No — there is no specific depiction tied to a DBpedia resource for Gozzoli's Adoration of the Magi, only general depictions associated with the artist himself. 
-</blockquote>
+</blockquote></li></ul>
                <p>The specific artwork is actually not available on DBpedia, there is only the page for the “Procession of the Magi” and also the biblical theme of the Adoration of the Magi. So we can enrich DBpedia also with this artwork. </p>
-               <blockquote><strong>Cristo in pietà tra la Vergine e San Giovanni (Christ the Man of Sorrows between the Virgin Mary and St. John the Evangelist)<br>
+               <blockquote>
+               <ul>
+                 <li><strong>Cristo in pietà tra la Vergine e San Giovanni (Christ the Man of Sorrows between the Virgin Mary and St. John the Evangelist)<br>
                Present on DBpedia:</strong>No — a SPARQL search and page browse did not produce any specific DBpedia resource or English‑labelled entry for this title under Gozzoli.<br>
-               <strong>Image present under property "foaf:depiction"</strong>: N/A (since the artwork itself isn't present).
-               <br>
-               <strong>Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of Sodom)<br>
+               <strong>Image present under property "foaf:depiction"</strong>: N/A (since the artwork itself isn't present).</li>
+               <li><strong>Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of Sodom)<br>
                Present on DBpedia:</strong>No — no DBpedia entry or mention for this work by Gozzoli was found.<br>
-               <strong>Image present under property "foaf:depiction"</strong>: N/A.
-               <br>
-               <strong>L’ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah)<br>
+               <strong>Image present under property "foaf:depiction"</strong>: N/A. </li>
+               <li><strong>L’ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah)<br>
  Present on DBpedia:</strong>No — likewise, no matching DBpedia resource or English‑labelled title exists for this painting.<br>
-               <strong> Image present under property "foaf:depiction":</strong> N/A.</blockquote>
+               <strong> Image present under property "foaf:depiction":</strong> N/A.</li></blockquote>
                 </div>
                <p>We also checked manually if these artworks are actually missing on DBpedia. We used these four artworks to create RDF triples which can be used to enrich DBpedia.
 
