@@ -260,27 +260,23 @@ LIMIT 100
 Absolutely — let’s break this down step by step to understand why you might see different content on the same URL, https://dbpedia.org/page/Benozzo_Gozzoli, depending on the laptop you use.
      <h3><b>Step-by-Step Reasoning:</b></h3>
      <h4>Step 1: Understand What DBpedia is:</h4>
-     <p>- <b>DBpedia</b> is a project that extracts structured from Wikipedia and makes it available on the web.
+     <p>- <b>DBpedia</b> is a project that extracts structured from Wikipedia and makes it available on the web.<br>
      - The page you're visiting is not static HTML like a typical webpage. It is <b>dynamically generated based on RDF data</b> (a semantic format).</p>
      <h4>Step 2: Understand what Varies Between Laptops</h4>
-    <p>Even if you're visiting the same URL, the following <b>client-side variables</b> can affect what you see:
-     - <b>Browser language settings
-     - Cookies or cache
-     - User-Agent string (different browsers/devices
-     - Geolocation (based on IP)
+    <p>Even if you're visiting the same URL, the following <b>client-side variables</b> can affect what you see:<br>
+     - <b>Browser language settings<br>
+     - Cookies or cache<br>
+     - User-Agent string (different browsers/devices<br>
+     - Geolocation (based on IP)<br>
      - Query parameters, even if hidden or appended by extensions</b></p>
      <h4>Step 3: Language Preferences in HTTP Requests</h4>
-     <p>- When you visit a website, your browser sends an Accept-Language <b>HTTP reader</b> indicating your preferred languages.
-
+     <p>- When you visit a website, your browser sends an Accept-Language <b>HTTP reader</b> indicating your preferred languages.<br>
      Example:
-
-     Accept-Language: en-US,en;q=0.9,nl;q=0.8
-
+     Accept-Language: en-US,en;q=0.9,nl;q=0.8<br>
 DBpedia uses this to adapt the content it shows.
-
-This is the most likely reason:
-- On Laptop A, your browser might be set to prefer <b>English only</b>.
-- On Laptop B, your browser might be set to prefer <b>Dutch (nl)</b> or includes Dutch as a fallback.
+This is the most likely reason:<br>
+- On Laptop A, your browser might be set to prefer <b>English only</b>.<br>
+- On Laptop B, your browser might be set to prefer <b>Dutch (nl)</b> or includes Dutch as a fallback.<br>
 - So DBpedia shows you different RDF-extracted versions accordingly.</p>
 <h4>Step 4: Differences in Cached Data</h4>
      <p>- One browser may have <b>cached an older version</b> of the page, or DBpedia might have returned slightly different content because of minor time-based updates.
@@ -288,12 +284,12 @@ This is the most likely reason:
        <p>- Some browser extensions or privacy settings can manipulate headers (including Accept-Language), spoofing your region or preferences.
          - VPNs or proxies can also affect perceived location or language.
          <h4>How to confirm this?</h4>
-         <p>You can check your browser's current language preference like this:
-           <b>In Chrome:</b>
-           1. Go to chrome://settings/languages
-           2. See which languages are listed and their priority.
-           <b>In Firefox:</b>
-           1. Go to about:preferences#general
+         <p>You can check your browser's current language preference like this:<br>
+           <b>In Chrome:</b><br>
+           1. Go to chrome://settings/languages<br>
+           2. See which languages are listed and their priority.<br>
+           <b>In Firefox:</b><br>
+           1. Go to about:preferences#general<br>
            2. Scroll to “Language” section.<br>
            Try setting both laptops to the <b>same language preferences</b>, clear cache, and then reload the page — you'll likely see the same content.
            <h4>Summary:</h4>
