@@ -49,7 +49,7 @@ Nonetheless, there are works created by Benozzo Gozzoli, along with labels and l
 <u>How was this solved?</u>
         We asked ChatGpt if it was possible to find cultural properties of Benozzo Gozzoli without using the URI.<br>
 <i>How can we find cultural properties which are not directly linked to a URI of Benozzo Gozzoli?</i>
-        <span style="font-size: 80%;"><blockquote>You can try to search for works by Benozzo Gozzoli even if they are not linked directly to the Benozzo Gozzoli entity via properties such as arc:author or similar. There are several ways to do this, and I will explain some strategies:
+        <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"><blockquote>You can try to search for works by Benozzo Gozzoli even if they are not linked directly to the Benozzo Gozzoli entity via properties such as arc:author or similar. There are several ways to do this, and I will explain some strategies:
         <h3><b>1. Search for works that have his name as the label or description</b></h3>
         You can search for resources that contain “Benozzo Gozzoli” in their labels or descriptions even if they are not formally linked through authorship. For example:
         <pre><code class="language-sparql"> 
@@ -83,9 +83,9 @@ WHERE {
   )
 }
 LIMIT 100
-</pre></blockquote></p></span>
+</pre></blockquote></p></div>
   <p><i>Can you rewrite this last query using union?</i></p>
-  <p><blockquote>Absolutely! Here's how you can <b>remake your query using UNION</b> instead of just OPTIONAL, to explicitly combine conditions that check <b>multiple properties</b> (like rdfs:label and dc:description) for mentions of <b>"benozzo gozzoli"</b>.
+  <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"><p><blockquote>Absolutely! Here's how you can <b>remake your query using UNION</b> instead of just OPTIONAL, to explicitly combine conditions that check <b>multiple properties</b> (like rdfs:label and dc:description) for mentions of <b>"benozzo gozzoli"</b>.
   <h3><b>SPARQL Query Using UNION to Search Multiple Fields</b></h3>
   <pre><code class="language-sparql">
   SELECT DISTINCT ?opera ?label ?desc
@@ -101,13 +101,14 @@ WHERE {
   }
 }
 LIMIT 100
-</pre></blockquote></p>
+</pre></blockquote></p></div>
   <p>Thanks to this query, we were able to identify the cultural properties associated with Benozzo Gozzoli through their labels and descriptions. Among the various properties of the different URIs found, one appeared frequently: dc:creator
 <a href="https://w3id.org/arco/resource/Agent/aac28c7ad97085f1ed9c62729f1cd43d">https://w3id.org/arco/resource/Agent/aac28c7ad97085f1ed9c62729f1cd43d</a>, referring to <b>Benozzo di Lese, known as Benozzo Gozzoli – ca . 1421 / 1497</b>. This allowed us to ultimately find the URI for Benozzo Gozzoli, which — contrary to what was stated by ChatGPT and Gemini — does in fact exist in ArCo.
 </p>
   <h2>SECOND CHALLENGE: Enrichment of DBpedia using ArCo</h2>
   <p>We also created another SPARQL query on ArCo endpoint to see the artworks in alphabetical order.</p>
-  <pre><code class="language-sparql">
+ <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;">
+   <pre><code class="language-sparql">
   PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
 
@@ -119,9 +120,9 @@ WHERE {
 }
 ORDER BY LCASE(STR(?label))
 LIMIT 100
-  </code></pre>
+  </code></pre></div>
   <p>To solve the gap we identified, we created RDF triples for the artworks we selected in ArCo to potentially enrich DBpedia.</p>
-  <p><blockquote>
+ <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"> <p><blockquote>
     <b>- L'adorazione dei Magi(Adoration of the Magi)</b>
     <pre>
       &lt;?xml version="1.0"?&gt;
@@ -230,7 +231,7 @@ LIMIT 100
 
 &lt;/rdf:RDF&gt;
       </pre>      
-  </blockquote></p>
+  </blockquote></p></div>
 
    <h2>THIRD CHALLENGE</h2>
    <p><a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a> by clicking on this link from different laptops, at the same moment, we realized that we were reading different information. 
@@ -246,7 +247,7 @@ LIMIT 100
 <i>Can you explain to me through a step by step reasoning (Chain of thought) why this happens: when I click on this link from one laptop <a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a> I can read a biography without the Dutch version, on the other hand, if I click on the same link, in the same moment, but with a different laptop, I find a different biography, where the Dutch version is available.</i>
 
 <h3>Answer: ChatGPT</h3>
-    <blockquote>
+  <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;">  <blockquote>
 Absolutely — let’s break this down step by step to understand why you might see different content on the same URL, https://dbpedia.org/page/Benozzo_Gozzoli, depending on the laptop you use.
      <h3><b>Step-by-Step Reasoning:</b></h3>
      <h4>Step 1: Understand What DBpedia is:</h4>
@@ -289,9 +290,9 @@ This is the most likely reason:
            <h4>Summary:</h4>
            <p>You’re seeing different versions of the page because <b>DBpedia dynamically adapts to the browser's language preferences (Accept-Language header)</b>. One laptop likely signals a preference for Dutch, while the other doesn’t — leading to different RDF views of the same entity.
 Let me know if you’d like to test this out interactively or view the HTTP headers directly!
- </blockquote>
+ </blockquote></div>
    <h3>Answer: GEMINI</h3>
-   <blockquote>Chain of Thought:<br>
+  <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"> <blockquote>Chain of Thought:<br>
 1. Is the link truly the same?<br>
 - Reasoning: This is the most fundamental question. Even a subtle difference in the URL (e.g., a query parameter, an extra character) could lead to different content.<br>
 - Action: Double-check both URLs character by character. Copy and paste them into a text editor to compare them precisely. Even a trailing slash can sometimes make a difference, though less common with DBPedia.<br>
@@ -318,9 +319,9 @@ Let me know if you’d like to test this out interactively or view the HTTP head
 5. Caching issues (browser or network level)?<br>
           - Reasoning: One laptop might be serving a cached version of the page (either from its browser cache or an intermediate network cache), while the other is fetching a fresh version. The cached version might predate the availability of the Dutch translation or be a different variant.<br>
           - Action:<br>
-            On both laptops, clear the browser cache and cookies for <a href="https://www.dbpedia.org/">dbpedia.org</a> and re-test.<br>
-Having understood the problem, we decided to stick with the version of the biography which presents a long description in Dutch. We then decided to enrich the biography since the Italian version was very short. 
-To solve this gap we created RDF triples to enrich the Italian translation of his bibliography.</blockquote> 
+            On both laptops, clear the browser cache and cookies for <a href="https://www.dbpedia.org/">dbpedia.org</a> and re-test.<br></blockquote></div>
+<p>Having understood the problem, we decided to stick with the version of the biography which presents a long description in Dutch. We then decided to enrich the biography since the Italian version was very short. 
+To solve this gap we created RDF triples to enrich the Italian translation of his bibliography.</p>
 <pre>
 &lt;?xml version="1.0"?&gt;
 &lt;rdf:RDF
