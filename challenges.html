@@ -297,12 +297,14 @@ This is the most likely reason:<br>
 Let me know if you’d like to test this out interactively or view the HTTP headers directly!
  </blockquote></div>
    <h3>Answer: GEMINI</h3>
-  <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"> <blockquote>Chain of Thought:<br>
-1. Is the link truly the same?<br>
+  <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"> 
+    <blockquote>
+      <h4>Chain of Thought:<br>
+1. Is the link truly the same?</h4><br>
 - Reasoning: This is the most fundamental question. Even a subtle difference in the URL (e.g., a query parameter, an extra character) could lead to different content.<br>
 - Action: Double-check both URLs character by character. Copy and paste them into a text editor to compare them precisely. Even a trailing slash can sometimes make a difference, though less common with DBPedia.<br>
 - Likelihood: High if human error in copying/typing occurred. Low if truly copied and pasted identically.<br>
-2. Is there a difference in browser settings or browser type?<br>
+<h4>2. Is there a difference in browser settings or browser type?</h4><br>
 - Reasoning: Browsers can have different language preferences, cookie settings, or even ad-blockers/extensions that alter how a page is displayed or which content is fetched. DBPedia often uses content negotiation based on browser language preferences.<br>
 - Action: <br>
       - Check the default language settings in both browsers (e.g., in Chrome: Settings -> Languages). If one browser has Dutch higher in its preferred language list, DBPedia might offer the Dutch version to that browser.<br>
@@ -310,18 +312,18 @@ Let me know if you’d like to test this out interactively or view the HTTP head
       - Disable any ad-blockers or extensions on both browsers and re-test.<br>
       - Try using "Incognito" or "Private Browse" mode on both laptops to see if the behavior persists (this disables most extensions and clears session-specific data).<br>
 - Likelihood: High, especially for language differences.<br>
-3. Is there a difference in operating system language settings?<br>
+<h4>3. Is there a difference in operating system language settings?</h4><br>
       - Reasoning: While less common for simple web page rendering, some websites might infer language preferences from the operating system's locale settings.<br>
       - Action: Check the language settings of the operating system on both laptops (e.g., Windows Settings -> Time & Language -> Language or macOS System Settings -> General -> Language & Region).<br>
       - Likelihood: Medium, less direct than browser language but possible.<br>
-4. Is there a difference in network location or IP address geo-localization?<br>
+<h4>4. Is there a difference in network location or IP address geo-localization?</h4><br>
       - Reasoning: While DBPedia is a global resource and doesn't typically geo-restrict content like this, some large content providers might have different content servers or variations based on the perceived geographical location of the user (inferred from IP address).<br>
       - Action:<br>
           - Are both laptops on the exact same Wi-Fi network?<br>
           - If one laptop is using a VPN or proxy, that would certainly change its perceived location.<br>
           - Check the public IP address of both laptops (you can do this by searching "what is my IP" on Google). If they are different, investigate why.<br>
       - Likelihood: Low for DBPedia specifically, but worth considering for general web behavior.<br>
-5. Caching issues (browser or network level)?<br>
+<h4>5. Caching issues (browser or network level)?</h4>h<br>
           - Reasoning: One laptop might be serving a cached version of the page (either from its browser cache or an intermediate network cache), while the other is fetching a fresh version. The cached version might predate the availability of the Dutch translation or be a different variant.<br>
           - Action:<br>
             On both laptops, clear the browser cache and cookies for <a href="https://www.dbpedia.org/">dbpedia.org</a> and re-test.<br>
