@@ -41,7 +41,7 @@
     <div class="w3-col m12">
       <div class="w3-card w3-white w3-round w3-margin-bottom w3-padding">
         <h1><b>How the gaps were identified</b></h1>
-        <h2>First gap</h2>
+        <h2>FIRST GAP</h2>
         <p>We started asking ChatGPT to find cultural properties related to Benozzo Gozzoli. Here is the question we made and the answer of the LLM:<br>
         <h3><i>Can you make a SPARQL query on ArCo which can ask the following question: what are the cultural properties of the author Benozzo Gozzoli?</i></h3>
         ChatGPT's answer:</p>
@@ -160,7 +160,7 @@ If you need assistance in adapting this query for other datasets or require furt
 <p>ChatGPT suggested using Wikidata, another knowledge graph, but it is not part of our project therefore we avoided it. <mark>Overall, the request to ChatGPT to find the URI of Benozzo Gozzoli led to no results</mark>, so we decided to search for the URI in a different way, which will be addressed in the <a href="https://alicesgarlata.github.io/gozzoli-project/challenges.html">Challenges page</a>. 
 We still thought that it was a good idea to insert this answer by ChatGPT because it shows how this LLM reasons.</p>
 
-<h2>Second gap</h2>
+<h2>SECOND GAP</h2>
   <h3><i>Can you open the Benozzo Gozzoli's DBpedia page?
   <a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a></i></h3>
 <span style="font-size: 80%;"><p> Here’s a summary of the Benozzo Gozzoli page on DBpedia (via search result) with key details:</p>
@@ -215,7 +215,7 @@ This is a triple that we created that can potentially add dbo:author property fo
 &lt;/rdf:RDF&gt;
 </code></pre></span></div>
               
-<h2>Third Gap</h2>
+<h2>THIRD GAP</h2>
                <p>At this point we chose some artworks by Benozzo Gozzoli and asked ChatGPT if they were available on DBpedia.
 This was our first question, using a <mark>few shot prompting</mark>:
               <i>Can you see on the SPARQL endpoint of DBpedia (https://dbpedia.org/sparql) if these artworks by Benozzo Gozzoli are 
@@ -255,7 +255,7 @@ Image present under property foaf:depiction: No<br>
 
 On Benozzo Gozzoli’s DBpedia page there are some resources whose name seem to refer to the artist’s artworks, but they are actually cultural/biblical themes, they are not connected Gozzoli with the property dbo:Author.
 </p>
-<h2>Fourth Gap</h2>
+<h2>FOURTH GAP</h2>
 <p>Later during the project, we found another gap on DBpedia compared to ArCo, which was <strong>missing information in the italian biography of Benozzo Gozzoli on DBpedia.</strong> Indeed, the Dutch version of his biography presented much more information than the Italian one, consisting of a brief description. Since he is an italian artist, we thought it would be ideal to enrich his biography in the italian language. The methodology to do so will be further explained in the “Challenges” section since in doing so, we faced a peculiar problem.</p>
       </div>
     </div>
