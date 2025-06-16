@@ -241,13 +241,19 @@ LIMIT 100
      <img src="img/DBpedia Gozzoli2.png" alt="Gozzoli DBpedia" width="45%">
         <p style="font-size: 0.9em; color: #aaa;">Image 2, with the Dutch version.</p>
     </div>
-   <p><blockquote>
+  <p>So we asked ChatGPT why this was happening:
+
+<i>Can you explain to me through a step by step reasoning (Chain of thought) why this happens: when I click on this link from one laptop <a href="https://dbpedia.org/page/Benozzo_Gozzoli">https://dbpedia.org/page/Benozzo_Gozzoli</a> I can read a biography without the Dutch version, on the other hand, if I click on the same link, in the same moment, but with a different laptop, I find a different biography, where the Dutch version is available.</i>
+
+<h4>Answer: ChatGPT</h4>
+    <blockquote>
+Absolutely — let’s break this down step by step to understand why you might see different content on the same URL, https://dbpedia.org/page/Benozzo_Gozzoli, depending on the laptop you use.
      <h3><b>Step-by-Step Reasoning:</b></h3>
      <h4>Step 1: Understand What DBpedia is:</h4>
      <p>- <b>DBpedia</b> is a project that extracts structured from Wikipedia and makes it available on the web.
      - The page you're visiting is not static HTML like a typical webpage. It is <b>dynamically generated based on RDF data</b> (a semantic format).</p>
      <h4>Step 2: Understand what Varies Between Laptops</h4>
-    <p>Even if you0re visiting the same URL, the following <b>client-side variables</b> can affect what you see:
+    <p>Even if you're visiting the same URL, the following <b>client-side variables</b> can affect what you see:
      - <b>Browser language settings
      - Cookies or cache
      - User-Agent string (different browsers/devices
@@ -283,7 +289,7 @@ This is the most likely reason:
            <h4>Summary:</h4>
            <p>You’re seeing different versions of the page because <b>DBpedia dynamically adapts to the browser's language preferences (Accept-Language header)</b>. One laptop likely signals a preference for Dutch, while the other doesn’t — leading to different RDF views of the same entity.
 Let me know if you’d like to test this out interactively or view the HTTP headers directly!
- </blockquote></p>
+ </blockquote>
    <h3>Answer: GEMINI</h3>
    <p>Chain of Thought:
 1. Is the link truly the same?
