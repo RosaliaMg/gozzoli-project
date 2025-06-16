@@ -53,7 +53,7 @@ Nonetheless, there are works created by Benozzo Gozzoli, along with labels and l
         <h3><b>1. Search for works that have his name as the label or description</b></h3>
         You can search for resources that contain “Benozzo Gozzoli” in their labels or descriptions even if they are not formally linked through authorship. For example:
         <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;"><code class="language-sparql"> 
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql"> 
         PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT DISTINCT ?opera ?label
@@ -71,7 +71,7 @@ LIMIT 100
         <h3><b>4. Search with wider queries using UNION or OPTIONAL</b></h3>
         You can merge multiple filler conditions to search the name in multiple properties:
         <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;"><code class="language-sparql">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql">
         PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
 
@@ -91,7 +91,7 @@ LIMIT 100
   <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"><p><blockquote>Absolutely! Here's how you can <b>remake your query using UNION</b> instead of just OPTIONAL, to explicitly combine conditions that check <b>multiple properties</b> (like rdfs:label and dc:description) for mentions of <b>"benozzo gozzoli"</b>.
   <h3><b>SPARQL Query Using UNION to Search Multiple Fields</b></h3>
   <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;"><code class="language-sparql">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql">
   SELECT DISTINCT ?opera ?label ?desc
 WHERE {
   {
@@ -113,7 +113,7 @@ LIMIT 100
   <p>We also created another SPARQL query on ArCo endpoint to see the artworks in alphabetical order.</p>
  <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;">
    <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;"><code class="language-sparql">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql">
   PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
 
@@ -130,7 +130,7 @@ LIMIT 100
  <div style="font-size: 80%; font-family: 'Open Sans', sans-serif;"> <p><blockquote>
     <b>- L'adorazione dei Magi(Adoration of the Magi)</b>
     <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;">
       &lt;?xml version="1.0"?&gt;
 &lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -158,7 +158,7 @@ LIMIT 100
 </pre></div>
       <b>- Cristo in pietà tra la Vergine e San Giovanni (Christ the Man of sorrows between the Virgin Mary and St. John the Evangelist)</b>
       <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;">
         &lt;?xml version="1.0"?&gt;
 &lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -186,7 +186,7 @@ LIMIT 100
       </pre></div>
       <b>- Incendio di Sodoma, distruzione di Sodoma e Gomorra (The burning of sodom) Incendio_di Sodoma,_distruzione_di_Sodoma_e_Gomorra</b>
       <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;">
         &lt;?xml version="1.0"?&gt;
 &lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -214,7 +214,7 @@ LIMIT 100
       </pre></div>
       <b>- L'ubriachezza di Noè, l'ebbrezza di Noè (The Vintage and Drunkenness of Noah)</b>
       <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;">
         &lt;?xml version="1.0"?&gt;
 &lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -333,7 +333,7 @@ Let me know if you’d like to test this out interactively or view the HTTP head
 <p>Having understood the problem, we decided to stick with the version of the biography which presents a long description in Dutch. We then decided to enrich the biography since the Italian version was very short. 
 To solve this gap we created RDF triples to enrich the Italian translation of his bibliography.</p>
 <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
-  <pre style="color: #e0e0e0; font-family: monospace; margin: 0;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;">
 &lt;?xml version="1.0"?&gt;
 &lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
