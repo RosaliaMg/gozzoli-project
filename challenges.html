@@ -47,11 +47,11 @@
         <h2>FIRST CHALLENGE: ChatGPT and Gemini were not able to find the URI of Benozzo Gozzoli on ArCo</h2>
         <p><u>How was this discovered?</u>
         We asked ChatGPT to create a SPARQL query to find Benozzo Gozzoli’s URI, which we needed to find the cultural properties associated with him on ArCo. This investigation led to no results since, according to ChatGPT, there is no URI for Benozzo Gozzoli on the ArCo knowledge graph. 
-Nonetheless, there are works created by Benozzo Gozzoli, along with labels and locations on the ArCo dataset, which however are not linked to Gozzoli as author.
+Nonetheless, there are works created by Benozzo Gozzoli, along with labels and locations on the ArCo dataset, which however are not linked to Gozzoli as author.<br>
 <u>How was this solved?</u>
-        We asked ChatGpt if it was possible to find cultural properties of Benozzo Gozzoli without using the URI.
+        We asked ChatGpt if it was possible to find cultural properties of Benozzo Gozzoli without using the URI.<br>
 <i>How can we find cultural properties which are not directly linked to a URI of Benozzo Gozzoli?</i>
-        <blockquote>You can try to search for works by Benozzo Gozzoli even if they are not linked directly to the Benozzo Gozzoli entity via properties such as arc:author or similar. There are several ways to do this, and I will explain some strategies:
+        <span style="font-size: 80%;"><blockquote>You can try to search for works by Benozzo Gozzoli even if they are not linked directly to the Benozzo Gozzoli entity via properties such as arc:author or similar. There are several ways to do this, and I will explain some strategies:
         <h3><b>1. Search for works that have his name as the label or description</b></h3>
         You can search for resources that contain “Benozzo Gozzoli” in their labels or descriptions even if they are not formally linked through authorship. For example:
         <pre><code class="language-sparql"> 
@@ -85,7 +85,7 @@ WHERE {
   )
 }
 LIMIT 100
-</pre></blockquote></p>
+</pre></blockquote></p></span>
   <p><i>Can you rewrite this last query using union?</i></p>
   <p><blockquote>Absolutely! Here's how you can <b>remake your query using UNION</b> instead of just OPTIONAL, to explicitly combine conditions that check <b>multiple properties</b> (like rdfs:label and dc:description) for mentions of <b>"benozzo gozzoli"</b>.
   <h3><b>SPARQL Query Using UNION to Search Multiple Fields</b></h3>
