@@ -48,7 +48,8 @@
         <blockquote>
           <span style="font-size: 80%;"><p>We need to find cultural properties (typically instances of arco-core:CulturalProperty) that are linked to the author Benozzo Gozzoli as their creator.
 Here's a SPARQL query that does that:
-<pre><code class="language-sparql">PREFIX arco-core: &lt;https://w3id.org/arco/core/&gt;
+<div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql">PREFIX arco-core: &lt;https://w3id.org/arco/core/&gt;
 PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
@@ -66,7 +67,7 @@ WHERE {
 
   OPTIONAL { ?culturalProperty a ?type . }
 } 
-</code></pre></span>
+</code></pre></div></span>
 
         </p>
         </blockquote>
@@ -83,35 +84,39 @@ WHERE {
            <p>Let me refine the approach by <strong>searching for the actual URI</strong> of Benozzo gozzoli and adjusting the structure accordingly.</p> 
         <h4>Step-by-step fixed query:</h4>
         <strong>First,</strong> try to find the URI for Benozzo Gozzoli in ArCo:<br>
-<pre><code class="language-sparql">
+<div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql">
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 SELECT ?person
 WHERE {
   ?person rdfs:label ?label .
   FILTER (LANG(?label) = "it" && CONTAINS(LCASE(?label), "benozzo gozzoli"))
 }
-          </code></pre>
+          </code></pre></div>
 This query searches for any resource whose label includes "benozzo gozzoli" (case-insensitive, Italian).
 </blockquote></p></span>
 <p>This query finds results, but they are only resources related to the low case string “benozzo gozzoli”.
   We needed to find results related to the label “benozzo gozzoli” regardless of the character, so we asked ChatGPT
   to rewrite the query with the case insensitive symbol “i” instead of LCASE in the FILTER part. This is its answer:</p>
 <p><blockquote>
-  <span style="font-size: 80%;"><pre><code class="language-sparql">
+  <span style="font-size: 80%;">
+    <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql">
   PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT ?person
 WHERE {
   ?person rdfs:label ?label .
   FILTER (LANG(?label) = "it" && REGEX(?label, "benozzo gozzoli", "i"))
-}</code></pre>
+}</code></pre></div>
 </blockquote></p> </span>  
 <p>We were able to find more results.
 </p>
 <img src="img/case insensitive results.png" alt="Case insensitive research results">
 <p>ChatGPT's answer continued like this:</p>
         <span style="font-size: 80%;"><blockquote><strong>If we get a URI like:</strong>
-<pre><code class="language-sparql">&lt;http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli&gt;
+<div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-sparql">&lt;http://dati.beniculturali.it/lodview/agent/BenozzoGozzoli&gt;
 We would plug it into this query to find associated cultural properties:
 PREFIX arco-core: &lt;https://w3id.org/arco/core/&gt;
 PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
@@ -127,7 +132,7 @@ WHERE {
 
   OPTIONAL { ?culturalProperty rdfs:label ?title . }
   OPTIONAL { ?culturalProperty a ?type . }
-              }</pre></code>
+              }</pre></code></div>div>
   Would you like me to look up the <strong>actual URI for Benozzo Gozzoli</strong> in the ArCo dataset for you now?
  </blockquote></span>
 <p>This last query doesn’t provide any result because ChatGPT made up the URI for Benozzo Gozzoli. We asked ChatGPT to search for a URI. We found the URI and the solution can be seen on the section <a href="https://alicesgarlata.github.io/gozzoli-project/challenges.html">Challenges</a>.
@@ -135,7 +140,8 @@ This was ChatGPT's answer:</p>
 <span style="font-size: 80%;"><blockquote>Thank you for your patience. Upon investigation, it appears that the ArCo dataset does not contain entries for Benozzo Gozzoli or his works. This absence likely explains why the previous SPARQL queries returned no results.
 However, Benozzo Gozzoli's artworks are well-documented in other cultural heritage datasets, such as Wikidata. For instance, his renowned fresco cycle in the Magi Chapel at Palazzo Medici Riccardi in Florence is cataloged there.
 To retrieve information about cultural properties associated with Benozzo Gozzoli from Wikidata, you can use the following SPARQL query:
-<pre><code>PREFIX wd: &lt;http://www.wikidata.org/entity/&gt;
+<div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code>PREFIX wd: &lt;http://www.wikidata.org/entity/&gt;
 PREFIX wdt: &lt;http://www.wikidata.org/prop/direct/&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
@@ -146,7 +152,7 @@ WHERE {
   OPTIONAL { ?work wdt:P571 ?inception. }
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
-ORDER BY ?inception</code></pre>
+ORDER BY ?inception</code></pre></div>
   This query retrieves works created by Benozzo Gozzoli, along with their labels, locations, and inception dates, if available.
 You can execute this query on the <a href="https://query.wikidata.org"/>Wikidata Query Service.</a>
 If you need assistance in adapting this query for other datasets or require further information, feel free to ask.
@@ -190,7 +196,9 @@ If you would like me to extract specific information from that page, or analyze 
 
 <p>During our research we checked Michelangelo’s DBpedia page and we noticed that while he has a dbo:author property that connects him to some of his works, on Benozzo Gozzoli’s page there is no dbo:author property connecting his artworks.
 This is a triple that we created that can potentially add dbo:author property for Benozzo Gozzoli. We checked it on an RDF validator.</p>
-<span style="font-size: 80%;"><pre><code class="language-xml">
+<span style="font-size: 80%;">
+  <div style="overflow-x: auto; background-color: #1e1e1e; padding: 1em; border-radius: 5px;">
+  <pre style="color: #e0e0e0; font-family: monospace; margin: 0; white-space: pre-wrap; word-break: break-word;"><code class="language-xml">
 &lt;?xml version="1.0"?&gt;
 &lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -205,7 +213,7 @@ This is a triple that we created that can potentially add dbo:author property fo
   &lt;/rdf:Description&gt;
 
 &lt;/rdf:RDF&gt;
-</code></pre></span>
+</code></pre></span></div>
               
 <h2>Third Gap</h2>
                <p>At this point we chose some artworks by Benozzo Gozzoli and asked ChatGPT if they were available on DBpedia.
