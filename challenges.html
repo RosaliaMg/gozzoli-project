@@ -55,7 +55,7 @@ Nonetheless, there are works created by Benozzo Gozzoli, along with labels and l
         <h3><b>1. Search for works that have his name as the label or description</b></h3>
         You can search for resources that contain “Benozzo Gozzoli” in their labels or descriptions even if they are not formally linked through authorship. For example:
         <pre><code class="language-sparql"> 
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT DISTINCT ?opera ?label
 WHERE {
@@ -71,8 +71,8 @@ LIMIT 100
         <h3><b>4. Search with wider queries using UNION or OPTIONAL</b></h3>
         You can merge multiple filler conditions to search the name in multiple properties:
         <pre><code class="language-sparql">
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
+        PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
 
 SELECT DISTINCT ?opera ?label ?desc
 WHERE {
@@ -116,7 +116,7 @@ PREFIX dc: <http://purl.org/dc/elements/1.1/>
 SELECT DISTINCT ?opera ?label 
 WHERE {
   ?opera  
-         dc:creator <https://w3id.org/arco/resource/Agent/aac28c7ad97085f1ed9c62729f1cd43d> ;
+         dc:creator &lt;https://w3id.org/arco/resource/Agent/aac28c7ad97085f1ed9c62729f1cd43d&gt; ;
          rdfs:label ?label .
 }
 ORDER BY LCASE(STR(?label))
@@ -126,28 +126,28 @@ LIMIT 100
   <p><blockquote>
     <b>- L'adorazione dei Magi(Adoration of the Magi)</b>
     <pre>
-      <?xml version="1.0"?>
-<rdf:RDF
+      &lt;?xml version="1.0"?&gt;
+&lt;rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:dbo="http://dbpedia.org/ontology/"
     xmlns:dbp="http://dbpedia.org/property/"
     xmlns:dbr="http://dbpedia.org/resource/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"&gt;
 
-  <rdf:Description rdf:about="http://dbpedia.org/resource/Adorazione_dei_Magi_(Gozzoli)">
-    <dbo:abstract xml:lang="it">Questo impegnativo volume riproduce gli affreschi del Camposanto di Pisa, mediante le incisioni di Carlo Lasinio. E' un'importante fonte documentaria poichè testimonia di parti figurate che oggi sono illeggibili oppure non più visibili. La tavola, di ampio formato è costituita da due fogli interi. Accuratissimo il chiaroscuro, con i neri molto evidenti che permettono di ritenere questa copia una delle prima tirature </dbo:abstract>
- <dbo:abstract xml:lang="en">This challenging volume replicates the frescoes of the Pisa Cemetery through the engravings of Carlo Lasinio. It is an important source of documentation as it witnesses figurative parts that are either illegible or no longer visible today. The large-format panel consists of two full sheets. Very meticulous chiaroscuro, with very evident blacks that allow this copy to be considered one of the first circulations.</dbo:abstract>
-    <dbp:type rdf:resource="http://dbpedia.org/ontology/Artwork"/>
-    <rdfs:label xml:lang="it">Adorazione dei Magi</rdfs:label>
-    <rdfs:label xml:lang="en">Adoration of the Magi</rdfs:label>
-    <foaf:depiction rdf:resource="http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007128/ICCD8526252_SBAAAS_PI_160063.jpg"/>
-    <dbo:author rdf:resource="http://dbpedia.org/resource/Benozzo_Gozzoli"/>
-    <dbo:location rdf:resource="http://dbpedia.org/resource/Piazza_dei_Miracoli"/>
-    <dbp:year xml:lang="en"> (?) 1812-(?) 1812  </dbp:year>
-    <dbo:medium xml:lang="en">Fresco</dbo:medium>
-  </rdf:Description>
+  &lt;rdf:Description rdf:about="http://dbpedia.org/resource/Adorazione_dei_Magi_(Gozzoli)"&gt;
+    &lt;dbo:abstract xml:lang="it"&gt;Questo impegnativo volume riproduce gli affreschi del Camposanto di Pisa, mediante le incisioni di Carlo Lasinio. E' un'importante fonte documentaria poichè testimonia di parti figurate che oggi sono illeggibili oppure non più visibili. La tavola, di ampio formato è costituita da due fogli interi. Accuratissimo il chiaroscuro, con i neri molto evidenti che permettono di ritenere questa copia una delle prima tirature &lt;/dbo:abstract&gt;
+ &lt;dbo:abstract xml:lang="en"&gt;This challenging volume replicates the frescoes of the Pisa Cemetery through the engravings of Carlo Lasinio. It is an important source of documentation as it witnesses figurative parts that are either illegible or no longer visible today. The large-format panel consists of two full sheets. Very meticulous chiaroscuro, with very evident blacks that allow this copy to be considered one of the first circulations.&lt;/dbo:abstract&gt;
+    &lt;dbp:type rdf:resource="http://dbpedia.org/ontology/Artwork"/&gt;
+    &lt;rdfs:label xml:lang="it"&gt;Adorazione dei Magi&lt;/rdfs:label&gt;
+    &lt;rdfs:label xml:lang="en"&gt;Adoration of the Magi&lt;/rdfs:label&gt;
+    &lt;foaf:depiction rdf:resource="http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007128/ICCD8526252_SBAAAS_PI_160063.jpg"/&gt;
+    &lt;dbo:author rdf:resource="http://dbpedia.org/resource/Benozzo_Gozzoli"/&gt;
+    &lt;dbo:location rdf:resource="http://dbpedia.org/resource/Piazza_dei_Miracoli"/&gt;
+    &lt;dbp:year xml:lang="en"&gt; (?) 1812-(?) 1812  &lt;/dbp:year&gt;
+    &lt;dbo:medium xml:lang="en"&gt;Fresco&lt;/dbo:medium&gt;
+  &lt;/rdf:Description&gt;
 
 </rdf:RDF>
 </pre>
